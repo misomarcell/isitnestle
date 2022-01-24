@@ -1,8 +1,17 @@
 <barcode-scanner-livestream
-	type="ean"
 	(valueChanges)="onValueChanges($event)"
 	(started)="onStarted($event)"
 ></barcode-scanner-livestream>
 <div [hidden]="!barcodeValue">
 	{{ barcodeValue }}
+</div>
+<button (click)="restart()">Restart</button>
+<br />
+<button *ngFor="let device of devices" (click)="changeCamera(device.deviceId)">
+	{{ device.label }}
+</button>
+<div>Selected device id: {{ selectedDeviceId }}</div>
+<br />
+<div>
+	{{ devices | json }}
 </div>
